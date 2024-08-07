@@ -40,6 +40,7 @@ DATA(go_zcl_aggregated_itab) = NEW zcl_itab_aggregation( ).
 DATA(go_zcl_combine_string_itab) = NEW zcl_itab_combine_string( ).
 DATA(go_zcl_itab_nested) = NEW zcl_itab_nested( ).
 DATA(go_zcl_twofer) = NEW zcl_twofer( ).
+DATA(go_zcl_high_scores) = NEW zcl_high_scores( ).
 DATA gt_initial_data TYPE initial_data.
 
 gt_initial_data = go_zcl_itab_basic->fill_itab( ).
@@ -52,6 +53,7 @@ DATA(gt_aggregated) = go_zcl_aggregated_itab->fill_aggregated_itab( it_itab = go
 DATA(gt_combined) = go_zcl_combine_string_itab->combine_items( ).
 DATA(gt_nested) = go_zcl_itab_nested->create_nest_table( ).
 DATA(gv_twofer) = go_zcl_twofer->twoforone( iv_name = 'Alice'  ).
-
+DATA(gt_score_list) = go_zcl_high_scores->fill_score_list( ).
+DATA(gt_top_three_scores) = go_zcl_high_scores->get_top_three_score( it_score_list = gt_score_list ).
 
 BREAK-POINT.
