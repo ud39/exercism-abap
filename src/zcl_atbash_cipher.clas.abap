@@ -12,6 +12,7 @@ CLASS zcl_atbash_cipher DEFINITION
 
   PROTECTED SECTION.
   PRIVATE SECTION.
+    DATA mv_abcde TYPE string.
 ENDCLASS.
 
 
@@ -20,6 +21,22 @@ CLASS ZCL_ATBASH_CIPHER IMPLEMENTATION.
 
 
   METHOD decoded_message.
+
+    DATA(lv_message) = iv_message.
+    CONDENSE lv_message NO-GAPS.
+    TRANSLATE lv_message TO UPPER CASE.
+
+    DATA(lv_alphabet_length) = strlen( sy-abcde ).
+    DATA(lv_msg_length) = strlen( lv_message ).
+
+    DO lv_msg_length TIMES.
+      DATA(lv_current_char) = substring( val = lv_message off = sy-index - 1 len = 1 ).
+      DATA(lv_index) = find_any_of( val = sy-abcde sub = lv_current_char ).
+      DATA(lv_decoded_char_index) = abs( lv_index - lv_alphabet_length ).
+      DATA(lv_decoded_char) = substring( val = sy-abcde off = ( lv_decoded_char_index - 1 MOD lv_alphabet_length )  len = 1 ).
+      rv_decoded_message = rv_decoded_message && lv_decoded_char.
+    ENDDO.
+
   ENDMETHOD.
 
 
