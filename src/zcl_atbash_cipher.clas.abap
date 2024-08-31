@@ -41,9 +41,13 @@ CLASS ZCL_ATBASH_CIPHER IMPLEMENTATION.
 
 
   METHOD encoded_message.
+    rv_encoded_message = decoded_message( iv_message = iv_message ).
+    BREAK-POINT.
   ENDMETHOD.
 
 
   METHOD zif_gjb_display~display.
+    IF iv_input IS INITIAL. WRITE: ` Input was empty `. ENDIF.
+    WRITE: | 'ENCODED_MESSAGE: { encoded_message( iv_input ) } DECODED_MESSAGE: { decoded_message( encoded_message( iv_input ) ) }' |.
   ENDMETHOD.
 ENDCLASS.
