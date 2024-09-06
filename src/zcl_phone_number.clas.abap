@@ -32,6 +32,23 @@ CLASS ZCL_PHONE_NUMBER IMPLEMENTATION.
       RAISE EXCEPTION TYPE cx_parameter_invalid.
     ENDIF.
 
+    IF lv_length_phone_number = 10.
+      DATA(lv_plan_code) = lv_phone_number(3).
+      DATA(lv_exchange_code) = lv_phone_number+3(7).
+    ELSEIF lv_length_phone_number = 11.
+      lv_plan_code = lv_phone_number+1(3).
+      lv_exchange_code = lv_phone_number+4(7).
+    ENDIF.
+
+    IF lv_plan_code CO '01' OR lv_exchange_code CO '01'.
+      RAISE EXCEPTION TYPE cx_parameter_invalid.
+    ENDIF.
+
+    IF lv_length_phone_number = 11 AND lv_phone_number(1) = '1'.
+      lv_length_phone_number = lv_length_phone_number - 1.
+      lv_phone_number = lv_phone_number+1(lv_length_phone_number).
+    ENDIF.
+    rv_phone_number = lv_phone_number.
   ENDMETHOD.
 
 
