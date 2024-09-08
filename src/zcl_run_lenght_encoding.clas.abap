@@ -19,6 +19,23 @@ CLASS ZCL_RUN_LENGHT_ENCODING IMPLEMENTATION.
 
 
   METHOD decode.
+    DATA(lv_length_code) = strlen( iv_code ).
+    DATA(lv_count) = 0.
+    DO lv_length_code TIMES.
+      DATA(lv_current_char) = substring( val = iv_code off = sy-index - 1 len = 1 ).
+      IF lv_current_char CO sy-abcde.
+        DO lv_count TIMES.
+          rv_code = rv_code && lv_current_char.
+        ENDDO.
+        IF lv_count = 0.
+          rv_code = rv_code && lv_current_char.
+        ENDIF.
+        lv_count = 0.
+      ELSE.
+        lv_count = lv_count + lv_current_char.
+      ENDIF.
+    ENDDO.
+
   ENDMETHOD.
 
 
