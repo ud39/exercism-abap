@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCL_STRING_REVERSE</CLSNAME>
     <LANGU>D</LANGU>
-    <DESCRIPT>String umdrehen Uebung</DESCRIPT>
+    <DESCRIPT>Loesung fuer &apos;STRING_REVERSE&apos;</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
