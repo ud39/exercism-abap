@@ -64,5 +64,7 @@ CLASS ZCL_RUN_LENGHT_ENCODING IMPLEMENTATION.
 
 
   METHOD zif_gjb_display~display.
+    IF iv_input IS INITIAL. WRITE: 'No code was given'. ENDIF.
+    WRITE: | Encode: { encode( iv_code = iv_input  ) } Decode: { decode( iv_code = iv_input ) } |.
   ENDMETHOD.
 ENDCLASS.

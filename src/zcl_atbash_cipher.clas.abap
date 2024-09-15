@@ -42,7 +42,6 @@ CLASS ZCL_ATBASH_CIPHER IMPLEMENTATION.
 
   METHOD encoded_message.
     rv_encoded_message = decoded_message( iv_message = iv_message ).
-    BREAK-POINT.
   ENDMETHOD.
 
 
